@@ -8,10 +8,10 @@
     redeemButton.addEventListener("click", function () {
         const enteredCoupon = couponInput.value.trim();
         if (enteredCoupon === correctCoupon) {
-            // Show voucher image and date
+            // Exibir imagem do vale e data
             voucherImage.style.display = "block";
 
-            // Set date on voucher image
+            // Configurar a data no voucher
             const now = new Date();
             const dateString = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
             voucherDate.textContent = `Data: ${dateString}`;
