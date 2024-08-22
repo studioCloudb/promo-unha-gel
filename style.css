@@ -76,7 +76,7 @@ button {
 .btn-agendar {
     display: inline-flex;
     align-items: center;
-    background-color: #8E2D6D;
+    background-color: #25D366; /* Cor verde do WhatsApp */
     color: white;
     padding: 10px 20px;
     text-decoration: none;
@@ -94,5 +94,5 @@ button {
     }
 
     .btn-agendar:hover {
-        background-color: #6F1F4F;
+        background-color: #1EBE5F; /* Cor verde mais escura do WhatsApp */
     }
