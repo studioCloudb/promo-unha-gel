@@ -20,8 +20,23 @@ h1 {
     color: #DD1096;
 }
 
-h2 {
-    font-size: 20px;
+#info-text {
+    font-size: 25px;
+    background-color: #FFF;
+    color: #DD1096;
+    padding: 10px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+p {
+    font-size: 16px;
+    color: #8E2D6D;
+}
+
+#coupon-status, #countdown {
+    font-size: 18px;
+    font-weight: bold;
     color: #8E2D6D;
 }
 
@@ -70,7 +85,7 @@ button {
     display: inline-block;
 }
 
-#voucher-date {
+#voucher-date, #voucher-code {
     position: absolute;
     bottom: 10px;
     right: 10px;
@@ -80,4 +95,8 @@ button {
     background-color: rgba(255, 255, 255, 0.8); /* Fundo claro para melhor visibilidade */
     padding: 5px;
     border-radius: 3px;
+}
+
+#voucher-code {
+    bottom: 30px; /* Ajuste para colocar o código de desconto um pouco acima da data */
 }
