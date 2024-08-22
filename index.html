@@ -1,42 +1,27 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cupom Promocional</title>
+    <title>Promoção Unha de Gel</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
     <div class="container">
-        <!-- Logo -->
         <img src="logo.png" alt="Logo do Studio" class="logo">
-
-        <!-- Título -->
-        <h1 class="title">CUPOM PROMOCIONAL UNHA DE GEL</h1>
-
-        <!-- Subtítulo -->
-        <h2 class="subtitle">Insira o campo abaixo:</h2>
-
-        <!-- Campo de Texto e Botão -->
-        <input type="text" id="couponInput" placeholder="Digite seu cupom aqui">
-        <button onclick="redeemCoupon()">Resgatar Cupom</button>
-
-        <!-- Imagem do Vale -->
-        <div id="resultContainer" class="hidden">
-            <img src="vale.png" id="valeImage" alt="Vale Promocional" class="vale">
-            <div id="timestamp" class="timestamp"></div>
-
-            <!-- Novo Link e Botão -->
-            <div class="promotion-info">
-                <p>Copie a Imagem e Agende Agora! Promoção válida por 24 Hs.</p>
-                <a href="http://wa.me/552799202181861" target="_blank" class="whatsapp-button">Agendar Agora</a>
-            </div>
+        <h1>CUPOM PROMOCIONAL UNHA DE GEL</h1>
+        <h2>Insira o campo abaixo:</h2>
+        <input type="text" id="coupon" placeholder="Digite seu cupom">
+        <button id="redeem-button">Resgatar Cupom</button>
+        <div id="voucher-image" style="display: none;">
+            <img src="voucher.png" alt="Vale" id="voucher-img">
+            <div id="voucher-date"></div>
+            <a href="http://wa.me//552799202181861" class="btn-agendar">
+                <i class="fab fa-whatsapp"></i> Agendar Agora
+            </a>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
-
 </html>
