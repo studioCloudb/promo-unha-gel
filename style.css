@@ -55,6 +55,7 @@ button {
 
 #voucher-image {
     margin-top: 20px;
+    position: relative;
 }
 
 #voucher-img {

@@ -1,21 +1,22 @@
-﻿function redeemCoupon() {
-    const couponInput = document.getElementById("couponInput").value;
-    const validCoupon = "GELSTUDIOTOTI";
+﻿document.addEventListener("DOMContentLoaded", function () {
+    const redeemButton = document.getElementById("redeem-button");
+    const couponInput = document.getElementById("coupon");
+    const voucherImage = document.getElementById("voucher-image");
+    const voucherDate = document.getElementById("voucher-date");
+    const correctCoupon = "GELSTUDIOTOTI";
 
-    if (couponInput === validCoupon) {
-        // Exibe a imagem do vale com a data e hora
-        const resultContainer = document.getElementById("resultContainer");
-        resultContainer.classList.remove("hidden");
+    redeemButton.addEventListener("click", function () {
+        const enteredCoupon = couponInput.value.trim();
+        if (enteredCoupon === correctCoupon) {
+            // Show voucher image and date
+            voucherImage.style.display = "block";
 
-        // Obtém a data e hora atuais
-        const now = new Date();
-        const formattedDate = now.toLocaleDateString();
-        const formattedTime = now.toLocaleTimeString();
-
-        // Insere a data e hora na imagem do vale
-        const timestamp = document.getElementById("timestamp");
-        timestamp.textContent = `${formattedDate} ${formattedTime}`;
-    } else {
-        alert("Cupom inválido! Tente novamente.");
-    }
-}
+            // Set date on voucher image
+            const now = new Date();
+            const dateString = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+            voucherDate.textContent = `Data: ${dateString}`;
+        } else {
+            alert("Código do cupom incorreto. Por favor, tente novamente.");
+        }
+    });
+});
