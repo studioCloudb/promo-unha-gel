@@ -55,7 +55,7 @@ button {
 
 #voucher-image {
     margin-top: 20px;
-    position: relative;
+    position: relative; /* Necessário para posicionar a data */
 }
 
 #voucher-img {
@@ -65,12 +65,13 @@ button {
 }
 
 #voucher-date {
-    font-size: 15px;
-    font-weight: bold;
-    color: #333;
     position: absolute;
     bottom: 10px;
     right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    /* Estilização da data e hora dentro da imagem */
 }
 
 .btn-agendar {

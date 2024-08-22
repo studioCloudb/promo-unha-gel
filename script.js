@@ -15,6 +15,8 @@
             const now = new Date();
             const dateString = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
             voucherDate.textContent = `Data: ${dateString}`;
+
+            // Estilizando a data para aparecer no canto inferior direito da imagem
             voucherDate.style.position = "absolute";
             voucherDate.style.bottom = "10px";
             voucherDate.style.right = "10px";
