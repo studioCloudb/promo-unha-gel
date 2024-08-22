@@ -15,6 +15,12 @@
             const now = new Date();
             const dateString = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
             voucherDate.textContent = `Data: ${dateString}`;
+            voucherDate.style.position = "absolute";
+            voucherDate.style.bottom = "10px";
+            voucherDate.style.right = "10px";
+            voucherDate.style.fontSize = "15px";
+            voucherDate.style.fontWeight = "bold";
+            voucherDate.style.color = "#333";
         } else {
             alert("Código do cupom incorreto. Por favor, tente novamente.");
         }
