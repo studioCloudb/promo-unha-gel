@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
     <div class="container">
         <img src="logo.png" alt="Logo do Studio" class="logo">
@@ -20,12 +18,11 @@
             <img src="vale.png" alt="Vale" id="voucher-img" style="width: 100%; max-width: 500px;">
             <!-- Data e hora posicionados corretamente no canto inferior direito da imagem -->
             <div id="voucher-date" style="position: absolute; bottom: 10px; right: 10px; color: #000; font-weight: bold; font-size: 15px;"></div>
-            <a id="whatsapp-link" href="#" class="btn-agendar">
+            <a id="whatsapp-link" href="#" class="btn-agendar" onclick="copyToClipboardAndOpenWhatsApp()">
                 <i class="fab fa-whatsapp"></i> Agendar Agora
             </a>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
-
 </html>
