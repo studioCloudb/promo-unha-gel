@@ -1,15 +1,12 @@
 ﻿body {
     font-family: Arial, sans-serif;
     background-color: #FFE4F4;
-    color: #333;
     text-align: center;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 800px;
-    margin: 0 auto;
     padding: 20px;
 }
 
@@ -21,79 +18,63 @@
 h1 {
     font-size: 50px;
     color: #DD1096;
-    margin: 0;
 }
 
 h2 {
     font-size: 20px;
     color: #8E2D6D;
-    margin-top: 0;
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 16px;
-    margin-bottom: 10px;
-    border: 1px solid #DDD;
+    margin: 10px 0;
+    width: 80%;
+    max-width: 300px;
+    border: 2px solid #DD1096;
     border-radius: 5px;
 }
 
 button {
-    background-color: #8E2D6D;
-    color: white;
     padding: 10px 20px;
+    font-size: 16px;
+    background-color: #8E2D6D;
+    color: #FFF;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
-    font-weight: bold;
 }
 
     button:hover {
-        background-color: #6F1F4F;
+        background-color: #721d57;
+    }
+
+.btn-agendar {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #25D366; /* Cor padrão do WhatsApp */
+    color: #FFF;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+    .btn-agendar i {
+        margin-right: 8px;
     }
 
 #voucher-image {
     margin-top: 20px;
-    position: relative; /* Necessário para posicionar a data */
-}
-
-#voucher-img {
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
 }
 
 #voucher-date {
     position: absolute;
     bottom: 10px;
     right: 10px;
+    color: #000;
+    font-weight: bold;
     font-size: 15px;
-    font-weight: bold;
-    color: #333;
-    /* Estilização da data e hora dentro da imagem */
 }
-
-.btn-agendar {
-    display: inline-flex;
-    align-items: center;
-    background-color: #25D366; /* Cor verde do WhatsApp */
-    color: white;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-    .btn-agendar i {
-        margin-right: 8px;
-        font-size: 18px;
-    }
-
-    .btn-agendar:hover {
-        background-color: #1EBE5F; /* Cor verde mais escura do WhatsApp */
-    }

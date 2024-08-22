@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <img src="logo.png" alt="Logo do Studio" class="logo">
@@ -15,14 +17,16 @@
         <input type="text" id="coupon" placeholder="Digite seu cupom">
         <button id="redeem-button">Resgatar Cupom</button>
         <div id="voucher-image" style="display: none; position: relative;">
-            <img src="vale.png" alt="Vale" id="voucher-img">
-            <!-- Data e hora dentro da imagem -->
-            <div id="voucher-date"></div>
-            <a href="#" id="whatsapp-link" class="btn-agendar">
+            <img src="vale.png" alt="Vale" id="voucher-img" style="width: 100%; max-width: 500px;">
+            <!-- Data e hora posicionados corretamente no canto inferior direito da imagem -->
+            <div id="voucher-date" style="position: absolute; bottom: 10px; right: 10px; color: #000; font-weight: bold; font-size: 15px;"></div>
+            <a href="https://wa.me/5527992021861?text=Olá, estou entrando em contato para agendar o serviço usando o cupom promocional. Veja o vale: https://wmnjunior.github.io/promo-unha-gel/vale.png"
+               class="btn-agendar">
                 <i class="fab fa-whatsapp"></i> Agendar Agora
             </a>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
