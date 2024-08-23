@@ -1,71 +1,35 @@
-﻿// Simulação de banco de dados em memória (substitua por backend real em produção)
-const usedCodes = new Set(); // Armazena códigos usados
-const ipUsage = new Map(); // Armazena o uso por IP
-const couponLimit = 2; // Limite de cupons por IP
+// Simulação de banco de dados em memória (substitua por backend real em produção)
 const cooldownPeriod = 7 * 24 * 60 * 60 * 1000; // 7 dias em milissegundos
-const userIP = "user-ip"; // Substitua por um método real para obter o IP do usuário
+const couponLimit = 2; // Limite de cupons por IP
+const validCoupon = "GELSTUDIOTOTI";
 
-document.getElementById("redeem-button").addEventListener("click", function () {
-    const coupon = document.getElementById("coupon").value;
-    const validCoupon = "GELSTUDIOTOTI";
+// Função para obter o IP (substitua por uma implementação real em produção)
+const userIP = "user-ip"; // Aqui estamos simulando, em produção você precisa pegar o IP real
 
-    // Verificar se o IP já gerou 2 códigos
-    const lastUsage = ipUsage.get(userIP)?.timestamp;
-    if (lastUsage && Date.now() - lastUsage < cooldownPeriod) {
-        const remainingTime = cooldownPeriod - (Date.now() - lastUsage);
-        const countdown = formatTime(remainingTime);
-        document.getElementById("countdown").textContent = `Você atingiu o limite máximo. Aguarde até o dia: ${countdown}`;
-        return;
+// Função para carregar os dados armazenados localmente
+function loadCouponData() {
+    const data = JSON.parse(localStorage.getItem(userIP));
+    if (data) {
+        return data;
     }
+    return { count: 0, lastGenerated: null, codes: [] };
+}
 
-    if (coupon === validCoupon) {
-        // Verificar e atualizar o número de cupons gerados
-        const couponCount = ipUsage.get(userIP)?.count || 0;
-        if (couponCount >= couponLimit) {
-            alert("Você já usou seu desconto. Aguarde 7 dias para gerar um novo código.");
-            return;
-        }
+// Função para salvar os dados localmente
+function saveCouponData(data) {
+    localStorage.setItem(userIP, JSON.stringify(data));
+}
 
-        // Gerar código de desconto único
-        const discountCode = generateUniqueCode();
-        usedCodes.add(discountCode);
-
-        // Atualizar IP usage
-        ipUsage.set(userIP, {
-            count: couponCount + 1,
-            timestamp: Date.now()
-        });
-
-        // Gerar data e hora atual formatada
-        const now = new Date();
-        const dateString = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
-
-        // Exibir a imagem, a data/hora e o código de desconto
-        document.getElementById("voucher-date").textContent = `Data e Hora: ${dateString}`;
-        document.getElementById("voucher-code").textContent = `Código de Desconto: Studio${discountCode}`;
-        document.getElementById("voucher-image").style.display = "block";
-
-        // Atualizar o link do WhatsApp com o novo texto e o link da imagem
-        const whatsappMessage = `Estou entrando em contato para agendar o serviço usando o cupom promocional: *GELSTUDIOTOTI*. Gerado no dia *${dateString}*. Veja o vale: https://studiocloudb.github.io/promo-unha-gel/vale.png`;
-        document.getElementById("whatsapp-link").href = `https://wa.me/5527992021861?text=${encodeURIComponent(whatsappMessage)}`;
-
-        // Atualizar o contador de cupons gerados
-        document.getElementById("coupon-count").textContent = couponCount + 1;
-        document.getElementById("countdown").textContent = "";
-
-    } else {
-        alert("Cupom inválido. Tente novamente.");
-    }
-});
-
+// Função para gerar um código único
 function generateUniqueCode() {
     let code;
     do {
         code = Math.random().toString().slice(2, 9); // Gera uma sequência de 7 números
-    } while (usedCodes.has(code));
+    } while (loadCouponData().codes.includes(code));
     return code;
 }
 
+// Função para formatar o tempo restante
 function formatTime(ms) {
     const days = Math.floor(ms / (24 * 60 * 60 * 1000));
     ms %= (24 * 60 * 60 * 1000);
@@ -77,3 +41,63 @@ function formatTime(ms) {
 
     return `${days} dias - ${hours} hs - ${minutes} min - ${seconds} s`;
 }
+
+// Função para verificar e exibir o estado atual dos cupons
+function checkCouponStatus() {
+    const data = loadCouponData();
+    document.getElementById("coupon-count").textContent = data.count;
+
+    if (data.count >= couponLimit) {
+        const remainingTime = cooldownPeriod - (Date.now() - data.lastGenerated);
+        if (remainingTime > 0) {
+            document.getElementById("countdown").textContent = `Você atingiu o limite máximo. Aguarde até o dia: ${formatTime(remainingTime)}`;
+        }
+    }
+}
+
+// Evento ao clicar no botão de resgate
+document.getElementById("redeem-button").addEventListener("click", function () {
+    const coupon = document.getElementById("coupon").value;
+    const data = loadCouponData();
+
+    // Verificar se o IP já gerou 2 códigos
+    if (data.count >= couponLimit) {
+        const remainingTime = cooldownPeriod - (Date.now() - data.lastGenerated);
+        if (remainingTime > 0) {
+            alert(`Você já usou seu desconto. Aguarde ${formatTime(remainingTime)} para gerar um novo código.`);
+            return;
+        }
+    }
+
+    if (coupon === validCoupon) {
+        // Verificar e atualizar o número de cupons gerados
+        const discountCode = generateUniqueCode();
+        data.codes.push(discountCode);
+        data.count += 1;
+        data.lastGenerated = Date.now();
+        saveCouponData(data);
+
+        // Gerar data e hora atual formatada
+        const now = new Date();
+        const dateString = now.toLocaleDateString('pt-BR') + ' ' + now.toLocaleTimeString('pt-BR');
+
+        // Exibir a imagem, a data/hora e o código de desconto
+        document.getElementById("voucher-date").textContent = `Data e Hora: ${dateString}`;
+        document.getElementById("voucher-code").textContent = `Código de Desconto: Studio${discountCode}`;
+        document.getElementById("voucher-image").style.display = "block";
+
+        // Atualizar o link do WhatsApp com o novo texto e o link da imagem
+        const whatsappMessage = `Estou entrando em contato para agendar o serviço usando o cupom promocional: *GELSTUDIOTOTI*. Gerado no dia *${dateString}*. Código: *Studio${discountCode}*. Veja o vale: https://studiocloudb.github.io/promo-unha-gel/vale.png`;
+        document.getElementById("whatsapp-link").href = `https://wa.me/5527992021861?text=${encodeURIComponent(whatsappMessage)}`;
+
+        // Atualizar o contador de cupons gerados
+        document.getElementById("coupon-count").textContent = data.count;
+        document.getElementById("countdown").textContent = "";
+
+    } else {
+        alert("Cupom inválido. Tente novamente.");
+    }
+});
+
+// Atualizar o status dos cupons ao carregar a página
+checkCouponStatus();
