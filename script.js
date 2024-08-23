@@ -1,11 +1,12 @@
-﻿const cooldownPeriod = 7 * 24 * 60 * 60 * 1000; // 7 dias em milissegundos
+﻿// Período de cooldown em milissegundos (7 dias)
+const cooldownPeriod = 7 * 24 * 60 * 60 * 1000;
 const couponLimit = 2; // Limite de cupons por IP
 const validCoupon = "GELSTUDIOTOTI";
 
-// Função para simular a obtenção do IP do usuário
+// Simulando o IP do usuário (aqui deveria ser uma função real para capturar o IP)
 const userIP = "user-ip";
 
-// Função para carregar os dados armazenados localmente
+// Carregar os dados armazenados localmente
 function loadCouponData() {
     const data = JSON.parse(localStorage.getItem(userIP));
     if (data) {
@@ -14,12 +15,12 @@ function loadCouponData() {
     return { count: 0, lastGenerated: null, codes: [] };
 }
 
-// Função para salvar os dados localmente
+// Salvar os dados localmente
 function saveCouponData(data) {
     localStorage.setItem(userIP, JSON.stringify(data));
 }
 
-// Função para gerar um código único
+// Gerar um código único
 function generateUniqueCode() {
     let code;
     do {
@@ -28,7 +29,7 @@ function generateUniqueCode() {
     return code;
 }
 
-// Função para formatar o tempo restante
+// Formatar o tempo restante
 function formatTime(ms) {
     const days = Math.floor(ms / (24 * 60 * 60 * 1000));
     ms %= (24 * 60 * 60 * 1000);
@@ -41,7 +42,7 @@ function formatTime(ms) {
     return `${days} dias - ${hours} hs - ${minutes} min - ${seconds} s`;
 }
 
-// Função para verificar e exibir o estado atual dos cupons
+// Verificar e exibir o estado atual dos cupons
 function checkCouponStatus() {
     const data = loadCouponData();
     document.getElementById("coupon-count").textContent = data.count;
