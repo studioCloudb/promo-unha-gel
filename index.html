@@ -13,6 +13,39 @@
             font-size: 14px;
             color: #8E2D6D;
         }
+
+        #blessing {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            color: #8E2D6D;
+        }
+
+        #voucher-image {
+            display: none;
+            position: relative;
+        }
+
+        #voucher-img {
+            width: 100%; /* Ajusta a largura da imagem para se adequar ao container */
+        }
+
+        #voucher-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8); /* Fundo semi-transparente para o texto */
+            border-bottom: 1px solid #ddd;
+            z-index: 10; /* Garante que o texto fique acima da imagem */
+        }
+
+        #whatsapp-link {
+            display: block;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -23,20 +56,23 @@
         <p id="coupon-status">Cupons Gerados: <span id="coupon-count">0</span></p>
         <p id="user-coupons"></p>
         <p id="countdown"></p>
-        <h2>Insira o CUPOM abaixo:</h2>
+        <h2>Insira o CUPOM: GELSTUDIOTOTI no campo abaixo:</h2>
         <input type="text" id="coupon" placeholder="Digite seu cupom">
         <button id="redeem-button">Receber Desconto</button>
-        <div id="voucher-image" style="display: none;">
+        <div id="voucher-image">
+            <div id="voucher-info">
+                <div id="voucher-date"></div>
+                <div id="voucher-code"></div>
+            </div>
             <img src="https://studiocloudb.github.io/promo-unha-gel/vale.png" alt="Vale" id="voucher-img">
-            <div id="voucher-date"></div>
-            <div id="voucher-code"></div>
             <a id="whatsapp-link" href="http://wa.me/5527992021861" class="btn-agendar">
                 <i class="fab fa-whatsapp"></i> Receber Desconto
             </a>
         </div>
     </div>
 
-    <div id="version">ver. 3.6</div>
+    <div id="version">ver. 3.7</div>
+    <div id="blessing">O senhor é Bom!</div>
 
     <script src="script.js"></script>
 </body>
