@@ -13,13 +13,12 @@
   </style>
 </head>
 <body>
-<p class="p1"><span class="s1">// Simulação de banco de dados em memória (substitua por backend real em produção)</span></p>
 <p class="p1"><span class="s1">const cooldownPeriod = 7 * 24 * 60 * 60 * 1000; // 7 dias em milissegundos</span></p>
 <p class="p1"><span class="s1">const couponLimit = 2; // Limite de cupons por IP</span></p>
 <p class="p1"><span class="s1">const validCoupon = "GELSTUDIOTOTI";</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1">// Função para obter o IP (substitua por uma implementação real em produção)</span></p>
-<p class="p1"><span class="s1">const userIP = "user-ip"; // Aqui estamos simulando, em produção você precisa pegar o IP real</span></p>
+<p class="p1"><span class="s1">// Função para simular a obtenção do IP do usuário</span></p>
+<p class="p1"><span class="s1">const userIP = "user-ip";</span></p>
 <p class="p2"><span class="s1"></span><br></p>
 <p class="p1"><span class="s1">// Função para carregar os dados armazenados localmente</span></p>
 <p class="p1"><span class="s1">function loadCouponData() {</span></p>
@@ -62,16 +61,16 @@
 <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>const data = loadCouponData();</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>document.getElementById("coupon-count").textContent = data.count;</span></p>
 <p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>// Exibir os cupons gerados</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (data.codes.length &gt; 0) {</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("user-coupons").textContent = `Seus cupons: ${data.codes.join(" - ")}`;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
+<p class="p2"><span class="s1"></span><br></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (data.count &gt;= couponLimit) {</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>const remainingTime = cooldownPeriod - (Date.now() - data.lastGenerated);</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>if (remainingTime &gt; 0) {</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">            </span>document.getElementById("countdown").textContent = `Você atingiu o limite máximo. Aguarde até o dia: ${formatTime(remainingTime)}`;</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>if (data.codes.length &gt; 0) {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("user-coupons").style.display = "block";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("generated-coupons").textContent = data.codes.join(" - ");</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
 <p class="p1"><span class="s1">}</span></p>
 <p class="p2"><span class="s1"></span><br></p>
@@ -114,10 +113,8 @@
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("coupon-count").textContent = data.count;</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("countdown").textContent = "";</span></p>
 <p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Atualizar a exibição dos cupons gerados</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("user-coupons").style.display = "block";</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("generated-coupons").textContent = data.codes.join(" - ");</span></p>
-<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>// Atualizar os cupons gerados</span></p>
+<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>document.getElementById("user-coupons").textContent = `Seus cupons: ${data.codes.join(" - ")}`;</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>} else {</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>alert("Cupom inválido. Tente novamente.");</span></p>
 <p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
